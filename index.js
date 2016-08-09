@@ -6,7 +6,7 @@
 //   By: lperrigu <marvin@42.fr>                    +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2016/08/09 19:11:43 by lperrigu          #+#    #+#             //
-//   Updated: 2016/08/09 20:29:49 by lperrigu         ###   ########.fr       //
+//   Updated: 2016/08/09 20:36:12 by lperrigu         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -55,6 +55,7 @@ controller.hears(['quiz', '!quiz', '!q'], ['direct_message'], function (bot, mes
 {
 		bot.reply(message, 'OK, let\'s make a little quiz')
 //		bot.reply(message, 'It\'s nice to talk to you directly.')
+/*
 		bot.reply(message,
 				  {
 				  attachments:
@@ -81,6 +82,7 @@ controller.hears(['quiz', '!quiz', '!q'], ['direct_message'], function (bot, mes
 								  }
 						  ]
 						  });
+*/
 })
 
 controller.hears('.*', ['mention'], function (bot, message) {
