@@ -6,7 +6,7 @@
 //   By: lperrigu <marvin@42.fr>                    +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2016/08/09 19:11:43 by lperrigu          #+#    #+#             //
-//   Updated: 2016/08/10 01:20:59 by lperrigu         ###   ########.fr       //
+//   Updated: 2016/08/10 01:23:46 by lperrigu         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -88,18 +88,6 @@ function (bot, message)
 //		bot.reply(message,'Je test')
 //})
 
-controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your name'],
-				 'direct_message,direct_mention,mention', function(bot, message) {
-
-					 var hostname = os.hostname();
-					 var uptime = formatUptime(process.uptime());
-
-					 bot.reply(message,
-            ':robot_face: I am a bot named <@' + bot.identity.name +
-							   '>. I have been running for ' + uptime + ' on ' + hostname + '.');
-
-				 });
-
 function formatUptime(uptime) {
     var unit = 'second';
     if (uptime > 60) {
@@ -117,6 +105,18 @@ function formatUptime(uptime) {
     uptime = uptime + ' ' + unit;
     return uptime;
 }
+
+controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your name'],
+				 'direct_message,direct_mention,mention', function(bot, message) {
+
+					 var hostname = os.hostname();
+					 var uptime = formatUptime(process.uptime());
+
+					 bot.reply(message,
+            ':robot_face: I am a bot named <@' + bot.identity.name +
+							   '>. I have been running for ' + uptime + ' on ' + hostname + '.');
+
+				 })
 
 controller.hears('.*', ['mention'], function (bot, message) {
   bot.reply(message, 'You really do care about me. :heart:')
