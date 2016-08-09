@@ -6,7 +6,7 @@
 //   By: lperrigu <marvin@42.fr>                    +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2016/08/09 19:11:43 by lperrigu          #+#    #+#             //
-//   Updated: 2016/08/09 23:09:18 by lperrigu         ###   ########.fr       //
+//   Updated: 2016/08/10 00:43:59 by lperrigu         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -81,6 +81,11 @@ function (bot, message)
 						}
 					]
 						  })
+})
+
+//interactive
+controller.on('interactive_message_callback', function(bot, message) {
+		bot.reply(message,'Je test')
 })
 
 controller.hears('.*', ['mention'], function (bot, message) {
