@@ -6,7 +6,7 @@
 //   By: lperrigu <marvin@42.fr>                    +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2016/08/09 19:11:43 by lperrigu          #+#    #+#             //
-//   Updated: 2016/08/09 20:38:04 by lperrigu         ###   ########.fr       //
+//   Updated: 2016/08/09 20:41:23 by lperrigu         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -60,22 +60,22 @@ controller.hears(['quiz', '!quiz', '!q'], ['direct_message'], function (bot, mes
 				  attachments:
 					  [
 						  {
-						  title: ‘Do you want to interact with my buttons?’,
-								  callback_id: ‘123’,
-								  attachment_type: ‘default’,
+						  title: 'Do you want to interact with my buttons?',
+								  callback_id: '123',
+								  attachment_type: 'default',
 								  actions:
 							  [
 								  {
-								  “name”:”yes”,
-										  “text”: “Yes”,
-										  “value”: “yes”,
-										  “type”: “button”,
+								  "name":"yes",
+										  "text": "Yes",
+										  "value": "yes",
+										  "type": "button",
 										  },
 								  {
-								  “name”:”no”,
-										  “text”: “No”,
-										  “value”: “no”,
-										  “type”: “button”,
+								  "name":"no",
+										  "text": "No",
+										  "value": "no",
+										  "type": "button",
 										  }
 								  ]
 								  }
