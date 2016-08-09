@@ -6,7 +6,7 @@
 //   By: lperrigu <marvin@42.fr>                    +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2016/08/09 19:11:43 by lperrigu          #+#    #+#             //
-//   Updated: 2016/08/09 22:42:52 by lperrigu         ###   ########.fr       //
+//   Updated: 2016/08/09 23:09:18 by lperrigu         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -51,14 +51,15 @@ controller.hears(['hello', 'hi'], ['direct_message'], function (bot, message) {
   bot.reply(message, 'It\'s nice to talk to you directly.')
 })
 
-controller.hears(['quiz', '!quiz', '!q'], ['direct_message'], function (bot, message)
+controller.hears(['quiz', '!quiz', '!q'], ['direct_message'],
+function (bot, message)
 {
 		bot.reply(message, 'OK, let\'s make a little quiz')
-/*		bot.reply(message,
+		bot.reply(message,
 				  {
 				  attachments:
-					  [
-						  {
+					[
+						{
 						  title: 'Do you want to interact with my buttons?',
 								  callback_id: '123',
 								  attachment_type: 'default',
@@ -77,59 +78,9 @@ controller.hears(['quiz', '!quiz', '!q'], ['direct_message'], function (bot, mes
 										  "type": "button",
 										  }
 								  ]
-								  }
-						  ]
+						}
+					]
 						  })
-*/
-			bot.reply(message,
-					  {
-					  attachments:[
-						  {
-						  title: 'Do you want to proceed?',
-								  callback_id: '123',
-								  attachment_type: 'default',
-								  actions: [
-									  {
-										  "name":"yes",
-											  "text": "Yes",
-											  "value": "yes",
-											  "type": "button",
-											  },
-									  {
-										"name":"no",
-										"text": "No",
-										"value": "no",
-											  "type": "button",
-										}
-                ]
-							}
-        ]
-							  },[
-							{
-							pattern: "yes",
-//									callback: function(reply, convo) {
-//									convo.say('FABULOUS!');
-//									convo.next();
-									bot.reply(message, 'YES')
-									// do something awesome here.
-//								}
-									},
-							{
-							pattern: "no",
-									bot.reply(message, 'NO')
-//									callback: function(reply, convo) {
-//									convo.say('Too bad');
-//									convo.next();
-//								}
-									},
-							{
-							default: true,
-//									callback: function(reply, convo) {
-									// do nothing
-//								}
-									bot.reply(message, 'NOTHING')
-									}
-								  ])
 })
 
 controller.hears('.*', ['mention'], function (bot, message) {
