@@ -6,7 +6,7 @@
 //   By: lperrigu <marvin@42.fr>                    +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2016/08/09 19:11:43 by lperrigu          #+#    #+#             //
-//   Updated: 2016/08/10 04:01:42 by lperrigu         ###   ########.fr       //
+//   Updated: 2016/08/10 04:11:34 by lperrigu         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -84,6 +84,7 @@ function (bot, message)
 				});
 		}
 */
+		bot.startConversation(message,function(err,convo) {
 			convo.ask(
 				{
 				response_type: 'ephemeral',
@@ -124,7 +125,8 @@ function (bot, message)
 						convo.next();
 					}
 				}
-					]);
+					])
+				}
 //		bot.startConversation(message, askFlavor);
 //				});
 /*			bot.startConversation(message, function(err, convo)
@@ -161,7 +163,7 @@ function (bot, message)
 					]
 						})
 */
-			})
+})
 
 //interactive
 //controller.on('interactive_message_callback', function(bot, message) {
