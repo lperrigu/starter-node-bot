@@ -6,7 +6,7 @@
 //   By: lperrigu <marvin@42.fr>                    +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2016/08/09 19:11:43 by lperrigu          #+#    #+#             //
-//   Updated: 2016/08/10 01:26:09 by lperrigu         ###   ########.fr       //
+//   Updated: 2016/08/10 04:01:42 by lperrigu         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -55,6 +55,85 @@ controller.hears(['quiz', '!quiz', '!q'], ['direct_message'],
 function (bot, message)
 {
 		bot.reply(message, 'OK, let\'s make a little quiz')
+/*
+		askFlavor = function(response, convo)
+		{
+		convo.ask('What flavor of pizza do you want?', function(response, convo)
+			{
+				convo.say('Awesome.');
+				askSize(response, convo);
+				convo.next();
+			});
+		}
+		askSize = function(response, convo)
+			{
+
+				convo.ask('What size do you want?', function(response, convo)
+				{
+					convo.say('Ok.')
+					askWhereDeliver(response, convo);
+					convo.next();
+				});
+			}
+		askWhereDeliver = function(response, convo)
+		{
+			convo.ask('So where do you want it delivered?', function(response, convo)
+				{
+					convo.say('Ok! Good bye.');
+					convo.next();
+				});
+		}
+*/
+			convo.ask(
+				{
+				response_type: 'ephemeral',
+						attachments: [
+							{
+							title: 'Do you want to proceed LOL?',
+									callback_id: '123',
+									attachment_type: 'default',
+									actions: [
+										{
+											"name": "yes",
+												"text": "Yes",
+												"value": "yes",
+												"type": "button",
+												},
+										{
+											"name": "no",
+												"text": "No",
+												"value": "no",
+												"type": "button",
+												}
+          ]
+									}
+      ]
+				},
+				[{
+				pattern: 'yes',
+						callback: function(response,convo) {
+						convo.say('OK you are done!');
+						convo.next();
+					}
+				},
+				{
+				default: true,
+						callback: function(response,convo) {
+						// just repeat the question
+						convo.repeat();
+						convo.next();
+					}
+				}
+					]);
+//		bot.startConversation(message, askFlavor);
+//				});
+/*			bot.startConversation(message, function(err, convo)
+				{
+					
+				}
+				)
+*/
+/*
 		bot.reply(message,
 				  {
 				  attachments:
@@ -80,8 +159,9 @@ function (bot, message)
 								  ]
 						}
 					]
-						  })
-})
+						})
+*/
+			})
 
 //interactive
 //controller.on('interactive_message_callback', function(bot, message) {
@@ -91,13 +171,11 @@ function (bot, message)
 controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your name'],
 				 'direct_message,direct_mention,mention', function(bot, message) {
 
-//					 var hostname = os.hostname();
 					 var uptime = formatUptime(process.uptime());
 
 					 bot.reply(message,
             ':robot_face: I am a bot named <@' + bot.identity.name +
 							   '>. I have been running for ' + uptime + '.');
-
 				 })
 
 function formatUptime(uptime) {
