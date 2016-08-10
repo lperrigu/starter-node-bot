@@ -6,7 +6,7 @@
 //   By: lperrigu <marvin@42.fr>                    +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2016/08/09 19:11:43 by lperrigu          #+#    #+#             //
-//   Updated: 2016/08/10 04:14:17 by lperrigu         ###   ########.fr       //
+//   Updated: 2016/08/10 04:52:14 by lperrigu         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -81,13 +81,13 @@ function (bot, message)
 									}
       ]
 				},
-				[{
-				pattern: 'yes',
-						callback: function(response,convo) {
-						convo.say('OK you are done!');
-						convo.next();
-					}
-				},
+//				[{
+//				pattern: 'yes',
+//						callback: function(response,convo) {
+//						convo.say('OK you are done!');
+//						convo.next();
+//					}
+//				},
 				{
 				default: true,
 						callback: function(response,convo) {
@@ -95,8 +95,8 @@ function (bot, message)
 						convo.repeat();
 						convo.next();
 					}
-				}
-					])
+				})
+//				])
 				})
 			})
 
