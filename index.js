@@ -6,7 +6,7 @@
 //   By: lperrigu <marvin@42.fr>                    +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2016/08/09 19:11:43 by lperrigu          #+#    #+#             //
-//   Updated: 2016/08/10 04:11:34 by lperrigu         ###   ########.fr       //
+//   Updated: 2016/08/10 04:14:17 by lperrigu         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -55,35 +55,6 @@ controller.hears(['quiz', '!quiz', '!q'], ['direct_message'],
 function (bot, message)
 {
 		bot.reply(message, 'OK, let\'s make a little quiz')
-/*
-		askFlavor = function(response, convo)
-		{
-		convo.ask('What flavor of pizza do you want?', function(response, convo)
-			{
-				convo.say('Awesome.');
-				askSize(response, convo);
-				convo.next();
-			});
-		}
-		askSize = function(response, convo)
-			{
-
-				convo.ask('What size do you want?', function(response, convo)
-				{
-					convo.say('Ok.')
-					askWhereDeliver(response, convo);
-					convo.next();
-				});
-			}
-		askWhereDeliver = function(response, convo)
-		{
-			convo.ask('So where do you want it delivered?', function(response, convo)
-				{
-					convo.say('Ok! Good bye.');
-					convo.next();
-				});
-		}
-*/
 		bot.startConversation(message,function(err,convo) {
 			convo.ask(
 				{
@@ -126,44 +97,8 @@ function (bot, message)
 					}
 				}
 					])
-				}
-//		bot.startConversation(message, askFlavor);
-//				});
-/*			bot.startConversation(message, function(err, convo)
-				{
-					
-				}
-				)
-*/
-/*
-		bot.reply(message,
-				  {
-				  attachments:
-					[
-						{
-						  title: 'Do you want to interact with my buttons?',
-								  callback_id: '123',
-								  attachment_type: 'default',
-								  actions:
-							  [
-								  {
-								  "name":"yes",
-										  "text": "Yes",
-										  "value": "yes",
-										  "type": "button",
-										  },
-								  {
-								  "name":"no",
-										  "text": "No",
-										  "value": "no",
-										  "type": "button",
-										  }
-								  ]
-						}
-					]
-						})
-*/
-})
+				})
+			})
 
 //interactive
 //controller.on('interactive_message_callback', function(bot, message) {
