@@ -54,40 +54,40 @@ controller.hears(['hello', 'hi'], ['direct_message'], function (bot, message) {
 controller.hears(['quiz', '!quiz', '!q'], ['direct_message'],
 function (bot, message)
 {
-		bot.reply(message, 'OK, let\'s make a little quiz')
-		bot.startConversation(message,function(err,convo) {
-			convo.ask(
-				{
-				response_type: 'ephemeral',
-						attachments: [
-							{
-							title: 'Do you want to proceed LOL?',
-									callback_id: '123',
-									attachment_type: 'default',
-									actions: [
-										{
-											"name": "yes",
-												"text": "Yes",
-												"value": "yes",
-												"type": "button",
-												},
-										{
-											"name": "no",
-												"text": "No",
-												"value": "no",
-												"type": "button",
-												}
-          ]
-									}
-      ]
+    bot.reply(message, 'OK, let\'s make a little quiz')
+    bot.startConversation(message,function(err,convo) {
+	convo.ask(
+	    {
+		response_type: 'ephemeral',
+		attachments: [
+		    {
+			title: 'Do you want to proceed LOL?',
+			callback_id: '123',
+			attachment_type: 'default',
+			actions: [
+			    {
+				"name": "yes",
+				"text": "Yes",
+				"value": "yes",
+				"type": "button",
+			    },
+			    {
+				"name": "no",
+				"text": "No",
+				"value": "no",
+				"type": "button",
+			    }
+			]
+		    }
+		]
+	    },
+				[{
+				pattern: 'yes',
+						callback: function(response,convo) {
+						convo.say('OK you are done!');
+						convo.next();
+					}
 				},
-//				[{
-//				pattern: 'yes',
-//						callback: function(response,convo) {
-//						convo.say('OK you are done!');
-//						convo.next();
-//					}
-//				},
 				{
 				default: true,
 						callback: function(response,convo) {
@@ -95,10 +95,9 @@ function (bot, message)
 						convo.repeat();
 						convo.next();
 					}
-				})
-//				])
-				})
-			})
+				}])
+    })
+})
 
 //interactive
 //controller.on('interactive_message_callback', function(bot, message) {
