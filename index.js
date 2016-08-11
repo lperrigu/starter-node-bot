@@ -17,7 +17,8 @@ var token = process.env.SLACK_TOKEN
 var controller = Botkit.slackbot({
   // reconnect to Slack RTM when connection goes bad
   retry: Infinity,
-  debug: false
+  debug: false,
+  interactive_replies: true
 })
 
 // Assume single team mode if we have a SLACK_TOKEN
@@ -50,7 +51,7 @@ controller.hears(['hello', 'hi'], ['direct_message'], function (bot, message) {
   bot.reply(message, 'Hello.')
   bot.reply(message, 'It\'s nice to talk to you directly.')
 })
-
+/*
 controller.hears(['quiz', '!quiz', '!q'], ['direct_message'],
 function (bot, message)
 {
@@ -98,6 +99,60 @@ function (bot, message)
 				}])
     })
 })
+*/
+
+controller.hears(['quiz', '!quiz', '!q'], ['direct_message'],
+		 function (bot, message)
+		 {
+		     bot.reply(message, 'OK, let\'s make a little quiz')
+		     bot.startConversation(message, function(err, convo) {
+			 convo.ask({
+			     attachments:[
+				 {
+				     title: 'Do you want to proceed?',
+				     callback_id: '123',
+				     attachment_type: 'default',
+				     actions: [
+				         {
+					     "name":"yes",
+					     "text": "Yes",
+					     "value": "yes",
+					     "type": "button",
+					 },
+					 {
+					     "name":"no",
+					     "text": "No",
+					     "value": "no",
+					     "type": "button",
+					 }
+				     ]
+				 }
+			     ]
+			 },[
+			     pattern: "yes",
+			     callback: function(reply, convo) {
+				 convo.say('FABULOUS!');
+				 convo.next();
+				 // do something awesome here.
+			     }
+			 ,
+				   {
+				       pattern: "no",
+				       callback: function(reply, convo) {
+					   convo.say('Too bad');
+					   convo.next();
+				       }
+				   },
+				   {
+				       default: true,
+				       callback: function(reply, convo) {
+					   // do nothing
+				       }
+				   }
+			 ])
+		     })
+		 })
+
 
 //interactive
 //controller.on('interactive_message_callback', function(bot, message) {
