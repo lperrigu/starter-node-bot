@@ -17,8 +17,8 @@ var token = process.env.SLACK_TOKEN
 var controller = Botkit.slackbot({
   // reconnect to Slack RTM when connection goes bad
   retry: Infinity,
-  debug: false,
-  interactive_replies: true
+  debug: false
+//  interactive_replies: true
 })
 
 // Assume single team mode if we have a SLACK_TOKEN
@@ -109,7 +109,7 @@ controller.hears(['quiz', '!quiz', '!q'], ['direct_message'],
 			 convo.ask({
 			     attachments:[
 				 {
-				     title: 'Do you want to proceed?',
+				     title: 'Do you want to proceed ?',
 				     callback_id: '123',
 				     attachment_type: 'default',
 				     actions: [
