@@ -131,12 +131,12 @@ controller.hears(['quiz', '!quiz', '!q'], ['direct_message'],
 			 },[
 			     {
 				 pattern: "yes",
-				 callback: function(reply, convo)
-				 convo.say('FABULOUS!');
-				 convo.next();
-				 convo.say('Too good');
-//				 bot.reply(message, 'do somethging awesome')
-				 // do something awesome here.
+				 callback: function(reply, convo) {
+				     convo.say('FABULOUS!');
+				     convo.next();
+				     convo.say('Too good');
+				     // do something awesome here.
+				 }
 			     },
 			     {
 				 pattern: "no",
