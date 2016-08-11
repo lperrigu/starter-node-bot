@@ -102,8 +102,8 @@ function (bot, message)
 */
 
 controller.hears(['quiz', '!quiz', '!q'], ['direct_message'],
-//		 function (bot, message)
-//		 {
+		 function (bot, message)
+		 {
 //		     bot.reply(message, 'OK, let\'s make a little quiz')
 		     bot.startConversation(message, function(err, convo) {
 			 convo.ask({
@@ -154,8 +154,7 @@ controller.hears(['quiz', '!quiz', '!q'], ['direct_message'],
 			     }
 			 ])
 		     })
-		 //		 })
-		)
+		 })
 
 //interactive
 //controller.on('interactive_message_callback', function(bot, message) {
