@@ -100,7 +100,7 @@ function (bot, message)
     })
 })
 */
-
+/*
 controller.hears(['quiz', '!quiz', '!q'], ['direct_message'],
 		 function (bot, message)
 		 {
@@ -152,7 +152,7 @@ controller.hears(['quiz', '!quiz', '!q'], ['direct_message'],
 			 ])
 		     })
 		 })
-
+*/
 
 //interactive
 //controller.on('interactive_message_callback', function(bot, message) {
