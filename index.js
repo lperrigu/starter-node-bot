@@ -100,7 +100,7 @@ function (bot, message)
     })
 })
 */
-/*
+
 controller.hears(['quiz', '!quiz', '!q'], ['direct_message'],
 		 function (bot, message)
 		 {
@@ -129,30 +129,32 @@ controller.hears(['quiz', '!quiz', '!q'], ['direct_message'],
 				 }
 			     ]
 			 },[
-			     pattern: "yes",
-			     callback: function(reply, convo) {
+			     {
+				 pattern: "yes",
+				 callback: function(reply, convo)
 				 convo.say('FABULOUS!');
 				 convo.next();
+				 convo.say('Too good');
+//				 bot.reply(message, 'do somethging awesome')
 				 // do something awesome here.
+			     },
+			     {
+				 pattern: "no",
+				 callback: function(reply, convo) {
+				     convo.say('Too bad');
+				     convo.next();
+				 }
+			     },
+			     {
+				 default: true,
+				 callback: function(reply, convo) {
+				     convo.say('nothing');
+				     // do nothing
+				 }
 			     }
-			 ,
-				   {
-				       pattern: "no",
-				       callback: function(reply, convo) {
-					   convo.say('Too bad');
-					   convo.next();
-				       }
-				   },
-				   {
-				       default: true,
-				       callback: function(reply, convo) {
-					   // do nothing
-				       }
-				   }
 			 ])
 		     })
 		 })
-*/
 
 //interactive
 //controller.on('interactive_message_callback', function(bot, message) {
