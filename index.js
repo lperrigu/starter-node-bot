@@ -45,126 +45,42 @@ controller.on('bot_channel_join', function (bot, message) {
   bot.reply(message, "I'm here!")
 })
 
-//controller.hears(['hello', 'hi'], ['direct_mention'], function (bot, message) {
-//  bot.reply(message, 'Hello.')
-//})
+controller.hears(['hello', 'hi'], ['direct_mention'], function (bot, message) {
+  bot.reply(message, 'Hello.')
+})
 
-//controller.hears(['hello', 'hi'], ['direct_message'], function (bot, message) {
-//  bot.reply(message, 'Hello.')
-//  bot.reply(message, 'It\'s nice to talk to you directly.')
-//})
-/*
-controller.hears(['quiz', '!quiz', '!q'], ['direct_message'],
-function (bot, message)
-{
-    bot.reply(message, 'OK, let\'s make a little quiz')
-    bot.startConversation(message,function(err,convo) {
-	convo.ask(
+controller.hears(['hello', 'hi'], ['direct_message'], function (bot, message) {
+  bot.reply(message, 'Hello.')
+  bot.reply(message, 'It\'s nice to talk to you directly.')
+})
+
+controller.hears('interactive', 'direct_message', function(bot, message) {
+    bot.reply(message, {
+	attachments:[
 	    {
-		response_type: 'ephemeral',
-		attachments: [
+		title: 'Do you want to interact with my buttons?',
+		callback_id: '123',
+		attachment_type: 'default',
+		actions: [
 		    {
-			title: 'Do you want to proceed LOL?',
-			callback_id: '123',
-			attachment_type: 'default',
-			actions: [
-			    {
-				"name": "yes",
-				"text": "Yes",
-				"value": "yes",
-				"type": "button",
-			    },
-			    {
-				"name": "no",
-				"text": "No",
-				"value": "no",
-				"type": "button",
-			    }
-			]
+			"name":"yes",
+			"text": "Yes",
+			"value": "yes",
+			"type": "button",
+		    },
+		    {
+			"name":"no",
+			"text": "No",
+			"value": "no",
+			"type": "button",
 		    }
 		]
-	    },
-				[{
-				pattern: 'yes',
-						callback: function(response,convo) {
-						convo.say('OK you are done!');
-						convo.next();
-					}
-				},
-				{
-				default: true,
-						callback: function(response,convo) {
-						// just repeat the question
-						convo.repeat();
-						convo.next();
-					}
-				}])
-    })
-})
-*/
+	    }
+	]
+    });
+});
 
-controller.hears(['quiz', '!quiz', '!q'], ['direct_message'], 'interactive',
-//controller.hears('interactive', 'direct_message',
-//controller.on('interactive', 'direct_message',
-		 function (bot, message)
-		 {
-//		     bot.reply(message, 'OK, let\'s make a little quiz')
-		     bot.startConversation(message, function(err, convo) {
-			 convo.ask({
-			     attachments:[
-				 {
-				     title: 'Do you want to proceed ?',
-				     callback_id: '123',
-				     attachment_type: 'default',
-				     actions: [
-				         {
-					     "name":"yes",
-					     "text": "Yes",
-					     "value": "yes",
-					     "type": "button",
-					 },
-					 {
-					     "name":"no",
-					     "text": "No",
-					     "value": "no",
-					     "type": "button",
-					 }
-				     ]
-				 }
-			     ]
-			 },[
-			     {
-				 pattern: "yes",
-				 callback: function(reply, convo) {
-				     convo.say('FABULOUS!');
-				     convo.next();
-				     convo.say('Too good');
-				     // do something awesome here.
-				 }
-			     },
-			     {
-				 pattern: "no",
-				 callback: function(reply, convo) {
-				     convo.say('Too bad');
-				     convo.next();
-				 }
-			     },
-			     {
-				 default: true,
-				 callback: function(reply, convo) {
-				     convo.say('nothing');
-				     // do nothing
-				 }
-			     }
-			 ])
-		     })
-		 })
 
-//interactive
-//controller.on('interactive_message_callback', function(bot, message) {
-//		bot.reply(message,'Je test')
-//})
-/*
 controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your name'],
 				 'direct_message,direct_mention,mention', function(bot, message) {
 
@@ -192,9 +108,7 @@ function formatUptime(uptime) {
     uptime = uptime + ' ' + unit;
     return uptime;
 }
-*/
 
-/*
 controller.hears('.*', ['mention'], function (bot, message) {
   bot.reply(message, 'You really do care about me. :heart:')
 })
@@ -230,4 +144,3 @@ controller.hears(['attachment'], ['direct_message', 'direct_mention'], function 
 controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, message) {
   bot.reply(message, 'Sorry <@' + message.user + '>, I don\'t understand LOLOL. \n')
 })
-*/
