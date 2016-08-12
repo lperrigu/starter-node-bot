@@ -172,7 +172,7 @@ controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your na
 					 bot.reply(message,
             ':robot_face: I am a bot named <@' + bot.identity.name +
 							   '>. I have been running for ' + uptime + '.');
-*/				 })
+							   })
 
 function formatUptime(uptime) {
     var unit = 'second';
@@ -191,6 +191,8 @@ function formatUptime(uptime) {
     uptime = uptime + ' ' + unit;
     return uptime;
 }
+*/
+
 /*
 controller.hears('.*', ['mention'], function (bot, message) {
   bot.reply(message, 'You really do care about me. :heart:')
