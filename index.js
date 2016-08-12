@@ -82,7 +82,7 @@ controller.hears('interactive', 'direct_message', function(bot, message) {
 });
 //});
 
-controller.on('interactive_message_callback', function(bot, message) {
+controller.on('TEST', function(bot, message) {
 
     // check message.actions and message.callback_id to see what action to take...
 
