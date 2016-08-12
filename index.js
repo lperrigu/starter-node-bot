@@ -103,9 +103,9 @@ function (bot, message)
 })
 */
 
-//controller.hears('interactive', ['quiz', '!quiz', '!q'], ['direct_message'],
+controller.hears(['quiz', '!quiz', '!q'], ['direct_message'],
 //controller.hears('interactive', 'direct_message',
-controller.on('interactive', 'direct_message',
+//controller.on('interactive', 'direct_message',
 		 function (bot, message)
 		 {
 //		     bot.reply(message, 'OK, let\'s make a little quiz')
