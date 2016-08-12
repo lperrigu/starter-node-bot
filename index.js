@@ -103,7 +103,7 @@ function (bot, message)
 })
 */
 
-controller.hears(['quiz', '!quiz', '!q'], ['direct_message'],
+controller.hears(['quiz', '!quiz', '!q'], ['direct_message'], 'interactive',
 //controller.hears('interactive', 'direct_message',
 //controller.on('interactive', 'direct_message',
 		 function (bot, message)
