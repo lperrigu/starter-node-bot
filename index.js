@@ -21,7 +21,7 @@ var controller = Botkit.slackbot({
 //    interactive_replies: true
 });
 
-//var controller = Botkit.slackbot({interactive_replies: true});
+var controller = Botkit.slackbot({interactive_replies: true});
 
 // Assume single team mode if we have a SLACK_TOKEN
 if (token) {
