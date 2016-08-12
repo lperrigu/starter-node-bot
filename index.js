@@ -54,8 +54,7 @@ controller.hears(['hello', 'hi'], ['direct_message'], function (bot, message){
   bot.reply(message, 'It\'s nice to talk to you directly.')
 })
 
-//controller.hears(['quiz'], ['direct_message'], function (bot, message) {
-controller.hears('interactive', 'direct_message', function(bot, message) {
+controller.hears('quiz', 'direct_message', function(bot, message) {
     bot.reply(message, {
 	attachments:[
 	    {
@@ -80,9 +79,8 @@ controller.hears('interactive', 'direct_message', function(bot, message) {
 	]
     });
 });
-//});
 
-controller.on('TEST', function(bot, message) {
+controller.on('quiz_message_callback', function(bot, message) {
 
     // check message.actions and message.callback_id to see what action to take...
 
