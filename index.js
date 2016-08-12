@@ -49,37 +49,38 @@ controller.hears(['hello', 'hi'], ['direct_mention'], function (bot, message) {
   bot.reply(message, 'Hello.')
 })
 
-controller.hears(['hello', 'hi'], ['direct_message'], function (bot, message) {
+controller.hears(['hello', 'hi'], ['direct_message'], function (bot, message){ 
   bot.reply(message, 'Hello.')
   bot.reply(message, 'It\'s nice to talk to you directly.')
 })
 
-controller.hears('interactive', 'direct_message', function(bot, message) {
-    bot.reply(message, {
-	attachments:[
-	    {
-		title: 'Do you want to interact with my buttons?',
-		callback_id: '123',
-		attachment_type: 'default',
-		actions: [
-		    {
-			"name":"yes",
-			"text": "Yes",
-			"value": "yes",
-			"type": "button",
-		    },
-		    {
-			"name":"no",
-			"text": "No",
-			"value": "no",
-			"type": "button",
-		    }
-		]
-	    }
-	]
+controller.hears(['quiz'], ['direct_message'], function (bot, message) {
+    controller.hears('interactive', 'direct_message', function(bot, message) {
+	bot.reply(message, {
+	    attachments:[
+		{
+		    title: 'Do you want to interact with my buttons?',
+		    callback_id: '123',
+		    attachment_type: 'default',
+		    actions: [
+			{
+			    "name":"yes",
+			    "text": "Yes",
+			    "value": "yes",
+			    "type": "button",
+			},
+			{
+			    "name":"no",
+			    "text": "No",
+			    "value": "no",
+			    "type": "button",
+			}
+		    ]
+		}
+	    ]
+	});
     });
 });
-
 
 controller.on('interactive_message_callback', function(bot, message) {
 
