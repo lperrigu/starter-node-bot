@@ -45,14 +45,14 @@ controller.on('bot_channel_join', function (bot, message) {
   bot.reply(message, "I'm here!")
 })
 
-controller.hears(['hello', 'hi'], ['direct_mention'], function (bot, message) {
-  bot.reply(message, 'Hello.')
-})
+//controller.hears(['hello', 'hi'], ['direct_mention'], function (bot, message) {
+//  bot.reply(message, 'Hello.')
+//})
 
-controller.hears(['hello', 'hi'], ['direct_message'], function (bot, message) {
-  bot.reply(message, 'Hello.')
-  bot.reply(message, 'It\'s nice to talk to you directly.')
-})
+//controller.hears(['hello', 'hi'], ['direct_message'], function (bot, message) {
+//  bot.reply(message, 'Hello.')
+//  bot.reply(message, 'It\'s nice to talk to you directly.')
+//})
 /*
 controller.hears(['quiz', '!quiz', '!q'], ['direct_message'],
 function (bot, message)
@@ -163,7 +163,7 @@ controller.hears('interactive', 'direct_message',
 //controller.on('interactive_message_callback', function(bot, message) {
 //		bot.reply(message,'Je test')
 //})
-
+/*
 controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your name'],
 				 'direct_message,direct_mention,mention', function(bot, message) {
 
@@ -172,7 +172,7 @@ controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your na
 					 bot.reply(message,
             ':robot_face: I am a bot named <@' + bot.identity.name +
 							   '>. I have been running for ' + uptime + '.');
-				 })
+*/				 })
 
 function formatUptime(uptime) {
     var unit = 'second';
@@ -191,7 +191,7 @@ function formatUptime(uptime) {
     uptime = uptime + ' ' + unit;
     return uptime;
 }
-
+/*
 controller.hears('.*', ['mention'], function (bot, message) {
   bot.reply(message, 'You really do care about me. :heart:')
 })
@@ -227,3 +227,4 @@ controller.hears(['attachment'], ['direct_message', 'direct_mention'], function 
 controller.hears('.*', ['direct_message', 'direct_mention'], function (bot, message) {
   bot.reply(message, 'Sorry <@' + message.user + '>, I don\'t understand LOLOL. \n')
 })
+*/
