@@ -13,15 +13,15 @@
 var Botkit = require('botkit')
 
 var token = process.env.SLACK_TOKEN
-/*
+
 var controller = Botkit.slackbot({
   // reconnect to Slack RTM when connection goes bad
     retry: Infinity,
-    debug: false
-//    interactive_replies: true
-});*/
+    debug: false,
+    interactive_replies: true
+});
 
-var controller = Botkit.slackbot({interactive_replies: true});
+//var controller = Botkit.slackbot({interactive_replies: true});
 
 // Assume single team mode if we have a SLACK_TOKEN
 if (token) {
