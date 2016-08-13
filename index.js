@@ -21,6 +21,28 @@ var controller = Botkit.slackbot({
     interactive_replies: true
 });
 
+
+
+
+controller.configureSlackApp({
+    clientId: process.env.clientId,
+    clientSecret: process.env.clientSecret,
+    redirectUri: 'http://localhost:3002',
+    scopes: ['incoming-webhook','team:read','users:read','channels:read','im:read','im:write','groups:read','emoji:read','chat:write:bot']
+});
+
+controller.setupWebserver(process.env.port,function(err,webserver) {
+
+    // set up web endpoints for oauth, receiving webhooks, etc.
+    controller
+	.createHomepageEndpoint(controller.webserver)
+	.createOauthEndpoints(controller.webserver,function(err,req,res) { ... })
+	.createWebhookEndpoints(controller.webserver);
+
+});
+
+
+
 //var controller = Botkit.slackbot({interactive_replies: true});
 
 // Assume single team mode if we have a SLACK_TOKEN
@@ -120,14 +142,14 @@ controller.on('quiz_message_callback', function(bot, message) {
 
 
 controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your name'],
-				 'direct_message,direct_mention,mention', function(bot, message) {
-
-					 var uptime = formatUptime(process.uptime());
-
-					 bot.reply(message,
-            ':robot_face: I am a bot named <@' + bot.identity.name +
-							   '>. I have been running for ' + uptime + '.');
-							   })
+		 'direct_message,direct_mention,mention', function(bot, message) {
+		     
+		     var uptime = formatUptime(process.uptime());
+		     
+		     bot.reply(message,
+			       ':robot_face: I am a bot named <@' + bot.identity.name +
+			       '>. I have been running for ' + uptime + '.');
+		 })
 
 function formatUptime(uptime) {
     var unit = 'second';
