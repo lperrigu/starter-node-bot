@@ -21,31 +21,6 @@ var controller = Botkit.slackbot({
     interactive_replies: true
 });
 
-
-
-
-controller.configureSlackApp({
-    clientId: process.env.clientId,
-    clientSecret: process.env.clientSecret,
-    redirectUri: 'http://localhost:3002',
-    //    scopes: ['incoming-webhook','team:read','users:read','channels:read','im:read','im:write','groups:read','emoji:read','chat:write:bot']
-    scopes: ['bot']
-});
-
-controller.setupWebserver(process.env.port,function(err,webserver) {
-
-    // set up web endpoints for oauth, receiving webhooks, etc.
-    controller
-	.createHomepageEndpoint(controller.webserver)
-	.createOauthEndpoints(controller.webserver,function(err,req,res) { ... })
-	.createWebhookEndpoints(controller.webserver);
-
-});
-
-
-
-//var controller = Botkit.slackbot({interactive_replies: true});
-
 // Assume single team mode if we have a SLACK_TOKEN
 if (token) {
   console.log('Starting in single-team mode')
@@ -72,85 +47,124 @@ controller.hears(['hello', 'hi'], ['direct_mention'], function (bot, message) {
   bot.reply(message, 'Hello.')
 })
 
-controller.hears(['hello', 'hi'], ['direct_message'], function (bot, message){ 
+controller.hears(['hello', 'hi'], ['direct_message'], function (bot, message) {
   bot.reply(message, 'Hello.')
   bot.reply(message, 'It\'s nice to talk to you directly.')
 })
 
-controller.hears('quiz', 'direct_message', function(bot, message) {
-    bot.reply(message, {
-	attachments:[
+controller.hears(['quiz', '!quiz', '!q'], ['direct_message'],
+function (bot, message)
+{
+    bot.reply(message, 'OK, let\'s make a little quiz')
+    bot.startConversation(message,function(err,convo) {
+	convo.ask(
 	    {
-		title: 'Do you want to interact with my buttons?',
-		callback_id: '123',
-		attachment_type: 'default',
-		actions: [
+		response_type: 'ephemeral',
+		attachments: [
 		    {
-			"name":"yes",
-			"text": "Yes",
-			"value": "yes",
-			"type": "button",
-		    },
-		    {
-			"name":"no",
-			"text": "No",
-			"value": "no",
-			"type": "button",
+			title: 'Do you want to proceed LOL?',
+			callback_id: '123',
+			attachment_type: 'default',
+			actions: [
+			    {
+				"name": "yes",
+				"text": "Yes",
+				"value": "yes",
+				"type": "button",
+			    },
+			    {
+				"name": "no",
+				"text": "No",
+				"value": "no",
+				"type": "button",
+			    }
+			]
 		    }
 		]
-	    }
-	]
-    });
-});
-
-controller.on('quiz_message_callback', function(bot, message) {
-
-    // check message.actions and message.callback_id to see what action to take...
-
-    bot.replyInteractive(message, {
-	text: '...',
-	attachments: [
-	                {
-			    title: 'My buttons',
-			    callback_id: '123',
-			    attachment_type: 'default',
-			    actions: [
-				                    {
-							"name":"yes",
-							"text": "Yes!",
-							"value": "yes",
-							"type": "button",
-						    },
+	    },
+				[{
+				pattern: 'yes',
+						callback: function(response,convo) {
+						convo.say('OK you are done!');
+						convo.next();
+					}
+				},
 				{
-				    "text": "No!",
-				    "name": "no",
-				    "value": "delete",
-				    "style": "danger",
-				    "type": "button",
-				    "confirm": {
-					"title": "Are you sure?",
-					"text": "This will do something!",
-					"ok_text": "Yes",
-					"dismiss_text": "No"
-				    }
-				}
-			    ]
-			}
-	]
-    });
+				default: true,
+						callback: function(response,convo) {
+						// just repeat the question
+						convo.repeat();
+						convo.next();
+					}
+				}])
+    })
+})
 
-});
 
+controller.hears('interactive', 'direct_message',
+		 function (bot, message)
+		 {
+		     bot.reply(message, 'OK, let\'s make a little quiz')
+		     bot.startConversation(message, function(err, convo) {
+			 convo.ask({
+			     attachments:[
+				 {
+				     title: 'Do you want to proceed ?',
+				     callback_id: '123',
+				     attachment_type: 'default',
+				     actions: [
+				         {
+					     "name":"yes",
+					     "text": "Yes",
+					     "value": "yes",
+					     "type": "button",
+					 },
+					 {
+					     "name":"no",
+					     "text": "No",
+					     "value": "no",
+					     "type": "button",
+					 }
+				     ]
+				 }
+			     ]
+			 },[
+			     {
+				 pattern: "yes",
+				 callback: function(reply, convo) {
+				     convo.say('FABULOUS!');
+				     convo.next();
+				     convo.say('Too good');
+				     // do something awesome here.
+				 }
+			     },
+			     {
+				 pattern: "no",
+				 callback: function(reply, convo) {
+				     convo.say('Too bad');
+				     convo.next();
+				 }
+			     },
+			     {
+				 default: true,
+				 callback: function(reply, convo) {
+				     convo.say('nothing');
+				     // do nothing
+				 }
+			     }
+			 ])
+		     })
+		 })
 
 controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your name'],
-		 'direct_message,direct_mention,mention', function(bot, message) {
-		     
-		     var uptime = formatUptime(process.uptime());
-		     
-		     bot.reply(message,
-			       ':robot_face: I am a bot named <@' + bot.identity.name +
-			       '>. I have been running for ' + uptime + '.');
-		 })
+				 'direct_message,direct_mention,mention', function(bot, message) {
+
+					 var uptime = formatUptime(process.uptime());
+
+					 bot.reply(message,
+            ':robot_face: I am a bot named <@' + bot.identity.name +
+							   '>. I have been running for ' + uptime + '.');
+				 })
 
 function formatUptime(uptime) {
     var unit = 'second';
