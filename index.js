@@ -30,7 +30,7 @@ controller.configureSlackApp({
     redirectUri: 'http://localhost:3002',
     scopes: ['incoming-webhook','team:read','users:read','channels:read','im:read','im:write','groups:read','emoji:read','chat:write:bot']
 });
-
+/*
 controller.setupWebserver(process.env.port,function(err,webserver) {
 
     // set up web endpoints for oauth, receiving webhooks, etc.
@@ -39,7 +39,7 @@ controller.setupWebserver(process.env.port,function(err,webserver) {
 	.createOauthEndpoints(controller.webserver,function(err,req,res) { ... })
 	.createWebhookEndpoints(controller.webserver);
 
-});
+});*/
 
 
 
